@@ -5,8 +5,6 @@
 //  Created by Victor on 11.01.2022.
 //
 import Spring
-import CoreGraphics
-import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - @IBOutlets
@@ -21,8 +19,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var dampingAnimationLabel: UILabel!
     @IBOutlet weak var velocityAnimationLabel: UILabel!
     
-    // MARK: - Public Properties
-    
     // MARK: - Private Properties
     private var currentIndexCount = 0
     private let animations = Spring.AnimationPreset.allCases
@@ -35,27 +31,29 @@ class MainViewController: UIViewController {
     private var velocity: CGFloat = 0.7
     
     private var currentIndex = 0
+    
     // MARK: - Override Methods
    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     // MARK: - @IBActions
     
     @IBAction func springRunAnimation(_ sender: SpringButton) {
         changedAnimationWithRandom(
             for: springAnimationView,
                animation: animations[currentIndex].rawValue)
-        sender.setTitle(animations[getNextIndex(for: animations)].rawValue, for: .normal)
+        sender.setTitle("Run \(animations[getNextIndex(for: animations)].rawValue)", for: .normal)
         currentIndex = animations.indices.contains(currentIndex + 1) == true ? currentIndex + 1 : 0
 
+        sender.titleLabel?.font = UIFont(name: "Chalkduster", size: 25)
         setValue()
-
 }
     //MARK: - Public Methods
     
-    func randomValue() -> CGFloat {
-        let value = CGFloat.random(in: 0...2)
+    func randomValue(from: CGFloat, to: CGFloat) -> CGFloat {
+        let value = CGFloat.random(in: from...to)
         return value
     }
     
@@ -65,28 +63,27 @@ class MainViewController: UIViewController {
         view.animation = animation
         view.curve = animationCurves.randomElement()?.rawValue ?? "easyIn"
         
-        force = randomValue()
+        force = randomValue(from: 0, to: 1)
         view.force = force
         
-        duration = randomValue()
+        duration = randomValue(from: 0, to: 1)
         view.duration = duration
         
-        delay = randomValue()
+        delay = randomValue(from: 0, to: 0.2)
         view.delay = delay
         
-        view.scaleX = randomValue()
-        view.scaleY = randomValue()
+        view.scaleX = randomValue(from: 0, to: 5)
+        view.scaleY = randomValue(from: 0, to: 2)
         
-        damping = randomValue()
+        damping = randomValue(from: 0, to: 1)
         view.damping = damping
         
-        velocity = randomValue()
+        velocity = randomValue(from: 0, to: 2)
         view.velocity = velocity
 
         view.animate()
     }
     
-
     private func getNextIndex(for array: [Spring.AnimationPreset]) -> Int {
         var nextIndex = currentIndex + 1
         nextIndex = array.indices.contains(nextIndex) == true ? currentIndex + 1 : 0
@@ -102,8 +99,6 @@ class MainViewController: UIViewController {
         dampingAnimationLabel.text = String(format: "Damping: %.1f", Double(damping))
         velocityAnimationLabel.text = String(format: "Velocity: %.1f", Double(velocity))
     }
-
-    
 }
     
 
