@@ -11,13 +11,13 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var springAnimationView: SpringView!
     
-    @IBOutlet weak var nameAnimationLabel: UILabel!
-    @IBOutlet weak var curveAnimationLabel: UILabel!
-    @IBOutlet weak var forceAnimationLabel: UILabel!
-    @IBOutlet weak var durationAnimationLabel: UILabel!
-    @IBOutlet weak var delayAnimationLabel: UILabel!
-    @IBOutlet weak var dampingAnimationLabel: UILabel!
-    @IBOutlet weak var velocityAnimationLabel: UILabel!
+    @IBOutlet weak var nameAnimationLabel: SpringLabel!
+    @IBOutlet weak var curveAnimationLabel: SpringLabel!
+    @IBOutlet weak var forceAnimationLabel: SpringLabel!
+    @IBOutlet weak var durationAnimationLabel: SpringLabel!
+    @IBOutlet weak var delayAnimationLabel: SpringLabel!
+    @IBOutlet weak var dampingAnimationLabel: SpringLabel!
+    @IBOutlet weak var velocityAnimationLabel: SpringLabel!
     
     // MARK: - Private Properties
     private var currentIndexCount = 0
@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setGradient()
     }
     
     // MARK: - @IBActions
@@ -46,8 +47,14 @@ class MainViewController: UIViewController {
                animation: animations[currentIndex].rawValue)
         sender.setTitle("Run \(animations[getNextIndex(for: animations)].rawValue)", for: .normal)
         currentIndex = animations.indices.contains(currentIndex + 1) == true ? currentIndex + 1 : 0
-
-        sender.titleLabel?.font = UIFont(name: "Chalkduster", size: 25)
+        sender.titleLabel?.font = UIFont(name: "Avenir Next Condensed", size: 40)
+        
+        sender.animation = "pop"
+        sender.animate()
+        
+        changeAnimation(for: durationAnimationLabel)
+        changeAnimation(for: velocityAnimationLabel)
+        
         setValue()
 }
     //MARK: - Public Methods
@@ -99,7 +106,27 @@ class MainViewController: UIViewController {
         dampingAnimationLabel.text = String(format: "Damping: %.1f", Double(damping))
         velocityAnimationLabel.text = String(format: "Velocity: %.1f", Double(velocity))
     }
-}
     
+    private func changeAnimation(for label: SpringLabel) {
+        label.animation = animations.randomElement()?.rawValue ?? "pop"
+        label.curve = "easyIn"
+        label.velocity = randomValue(from: 0, to: 0.5)
+        label.force = randomValue(from: 0, to: 1)
+        label.damping = randomValue(from: 0, to: 0.6)
+        label.animate()
+        }
+}
+
+extension MainViewController {
+        func setGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [
+            UIColor.systemBlue.cgColor,
+            UIColor.systemGray.cgColor
+        ]
+            view.layer.insertSublayer(gradient, at: 0)
+    }
+}
 
 
