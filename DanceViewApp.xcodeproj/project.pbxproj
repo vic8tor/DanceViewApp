@@ -14,6 +14,7 @@
 		5792F032278D7CD6002D6F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5792F030278D7CD6002D6F76 /* Main.storyboard */; };
 		5792F034278D7CD8002D6F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5792F033278D7CD8002D6F76 /* Assets.xcassets */; };
 		5792F037278D7CD8002D6F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5792F035278D7CD8002D6F76 /* LaunchScreen.storyboard */; };
+		5792F04A279052E9002D6F76 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5792F049279052E9002D6F76 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		5792F033278D7CD8002D6F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5792F036278D7CD8002D6F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5792F038278D7CD8002D6F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5792F049279052E9002D6F76 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		92BBB2257820731E8E99A937 /* Pods-DanceViewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanceViewApp.release.xcconfig"; path = "Target Support Files/Pods-DanceViewApp/Pods-DanceViewApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 		5792F029278D7CD6002D6F76 /* DanceViewApp */ = {
 			isa = PBXGroup;
 			children = (
+				5792F048279052D2002D6F76 /* Model */,
 				5792F03E278D835C002D6F76 /* SupportFiles */,
 				5792F03F278D8394002D6F76 /* ViewControllers */,
 				5792F040278D83A8002D6F76 /* Storyboards */,
@@ -112,6 +115,14 @@
 				5792F033278D7CD8002D6F76 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5792F048279052D2002D6F76 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5792F049279052E9002D6F76 /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		67EE38DC58DB192043373F56 /* Pods */ = {
@@ -241,6 +252,7 @@
 				5792F02F278D7CD6002D6F76 /* MainViewController.swift in Sources */,
 				5792F02B278D7CD6002D6F76 /* AppDelegate.swift in Sources */,
 				5792F02D278D7CD6002D6F76 /* SceneDelegate.swift in Sources */,
+				5792F04A279052E9002D6F76 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
